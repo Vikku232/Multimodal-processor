@@ -4,10 +4,14 @@ import streamlit as st
 
 def get_connection():
     return pymysql.connect(
-        host='localhost',
-        user='root',
-        password='vikku@123',
-        database='multimodal_processor'
+        host="127.0.0.1",
+        port=3306,
+        user="root",
+        password="vikku@123",
+        database="multimodal_processor",
+        charset="utf8mb4",
+        cursorclass=pymysql.cursors.DictCursor,
+        autocommit=False
     )
 
 def init_db():
