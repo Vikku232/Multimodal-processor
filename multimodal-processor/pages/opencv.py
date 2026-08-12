@@ -160,6 +160,7 @@ def render_opencv_page():
     # Output Section
     st.markdown('<div class="output-title">Output Result</div>', unsafe_allow_html=True)
     
+    st.write("DEBUG INFO:", {"action": st.session_state.action, "text": user_text})
     selected_action = st.session_state.action
     text_actions = {"entities", "pos", "noun_chunks", "tokenize"}
     image_actions = {"grayscale", "edges", "blur", "invert"}
