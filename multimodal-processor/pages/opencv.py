@@ -52,7 +52,6 @@ def set_action(action_name):
     st.session_state.action = action_name
 
 def render_opencv_page():
-    st.write("DEBUG Action State:", st.session_state.action)
     st.markdown('<div class="main-title">✨ Multimodal Processor UI ✨</div>', unsafe_allow_html=True)
 
     # Input modes selector
