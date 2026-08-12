@@ -1,0 +1,636 @@
+/* --- GENERAL RESET & APP BACKGROUND --- */
+.stApp {
+    background-color: #0b0f17 !important;
+    background-image: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.1) 0px, transparent 50%),
+                      radial-gradient(at 50% 0%, rgba(139, 92, 246, 0.08) 0px, transparent 50%),
+                      radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.05) 0px, transparent 50%) !important;
+    color: #f1f5f9 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Hide default streamlit elements and native header bar */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header[data-testid="stHeader"] {
+    display: none !important;
+}
+
+/* --- TYPOGRAPHY --- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', 'Inter', sans-serif !important;
+    font-weight: 700 !important;
+    color: #f8fafc !important;
+}
+
+/* --- TOP HEADER BAR --- */
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #090d14;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.75rem 2rem;
+    margin-left: -5rem;
+    margin-right: -5rem;
+    margin-top: -5rem; /* Pull to the very top */
+    margin-bottom: 2.5rem;
+    height: 4.5rem;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.search-icon {
+    color: #64748b;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.search-icon:hover {
+    color: #f1f5f9;
+}
+
+.btn-signin {
+    background-color: #2563eb;
+    color: white !important;
+    padding: 0.45rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none !important;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-signin:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.user-avatar img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    object-fit: cover;
+}
+
+/* --- GENERAL BUTTONS IN MAIN CONTENT AREA --- */
+[data-testid="stMain"] [data-testid="baseButton-secondary"] {
+    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 600 !important;
+    padding: 0.6rem 1.5rem !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2) !important;
+}
+
+[data-testid="stMain"] [data-testid="baseButton-secondary"]:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #4338ca 100%) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35) !important;
+}
+
+/* --- SIDEBAR OVERRIDES --- */
+[data-testid="stSidebar"] {
+    background-color: #090d14 !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Hide the marker containers so they don't take layout space */
+.sidebar-btn-active, .sidebar-btn-inactive, .sidebar-helper, .action-marker, .output-image-marker {
+    height: 0px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    overflow: hidden !important;
+    display: block !important;
+}
+
+/* Sidebar Custom Brand / Logo */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 1.2rem;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.brand-name {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: #f8fafc;
+    letter-spacing: -0.03em;
+}
+
+/* Sidebar separators */
+.sidebar-separator {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.05);
+    margin: 1rem 1.25rem;
+}
+
+/* Target sidebar buttons via markers */
+div[data-testid="element-container"]:has(.sidebar-btn-active) + div[data-testid="element-container"] button,
+div[data-testid="element-container"]:has(.sidebar-btn-inactive) + div[data-testid="element-container"] button,
+div[data-testid="element-container"]:has(.sidebar-helper) + div[data-testid="element-container"] button {
+    background-color: transparent !important;
+    border: none !important;
+    color: #94a3b8 !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    padding: 0.6rem 0.8rem !important;
+    border-radius: 10px !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+    height: 2.5rem !important;
+}
+
+/* Hover style for sidebar buttons */
+div[data-testid="element-container"]:has(.sidebar-btn-active) + div[data-testid="element-container"] button:hover,
+div[data-testid="element-container"]:has(.sidebar-btn-inactive) + div[data-testid="element-container"] button:hover,
+div[data-testid="element-container"]:has(.sidebar-helper) + div[data-testid="element-container"] button:hover {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    color: #f1f5f9 !important;
+    transform: translateX(2px) !important;
+}
+
+/* Active style for sidebar buttons */
+div[data-testid="element-container"]:has(.sidebar-btn-active) + div[data-testid="element-container"] button {
+    background-color: rgba(59, 130, 246, 0.08) !important;
+    color: #60a5fa !important;
+    font-weight: 600 !important;
+    border-left: 3px solid #3b82f6 !important;
+}
+
+/* Helper spacing at bottom */
+.sidebar-spacer {
+    flex-grow: 1;
+    min-height: 50px;
+}
+
+/* --- MAIN CONTAINER & TITLE --- */
+.main-title {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-align: center;
+    background: linear-gradient(90deg, #fbcfe8 0%, #c084fc 35%, #60a5fa 70%, #34d399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* --- INPUT TABS --- */
+[data-baseweb="tab-list"] {
+    background-color: #0e1320 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 12px 12px 0 0 !important;
+    padding: 0 1rem !important;
+    gap: 1.5rem !important;
+}
+
+[data-baseweb="tab"] {
+    color: #64748b !important;
+    background-color: transparent !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    padding: 1rem 0.5rem !important;
+    border-bottom: 2px solid transparent !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-baseweb="tab"][aria-selected="true"] {
+    color: #60a5fa !important;
+    border-bottom-color: #3b82f6 !important;
+}
+
+[data-baseweb="tab"]:hover {
+    color: #cbd5e1 !important;
+}
+
+/* Tab Panels Card Container */
+[data-baseweb="tab-panel"] {
+    background-color: #0e1320 !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-top: none !important;
+    border-radius: 0 0 16px 16px !important;
+    padding: 1.5rem !important;
+    margin-bottom: 2rem !important;
+}
+
+/* Input Fields (Text Area / File Upload) styling */
+.stTextArea textarea {
+    background-color: #090d14 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    color: #f1f5f9 !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.95rem !important;
+    padding: 1rem !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.stTextArea textarea:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+}
+
+.stFileUploader {
+    background-color: #090d14 !important;
+    border: 1px dashed rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px !important;
+    padding: 1rem !important;
+}
+
+/* Upload image button */
+.stFileUploader button {
+    background-color: #1e293b !important;
+    color: #f1f5f9 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    padding: 0.4rem 1rem !important;
+}
+
+.stFileUploader button:hover {
+    background-color: #334155 !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Image preview container */
+.preview-card {
+    background-color: #090d14;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- ACTION BUTTONS GRID --- */
+.action-grid-title {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-top: 1.5rem;
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Action Button Styling via scoped marker sibling selector */
+div[data-testid="element-container"]:has(.action-marker) + div[data-testid="element-container"] button {
+    border-radius: 12px !important;
+    border: none !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    padding: 0.75rem 0.5rem !important;
+    color: #ffffff !important;
+    height: 2.8rem !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+    width: 100% !important;
+}
+
+/* Button hover offsets */
+div[data-testid="element-container"]:has(.action-marker) + div[data-testid="element-container"] button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Active buttons styling */
+div[data-testid="element-container"]:has(.action-marker.btn-active-glow) + div[data-testid="element-container"] button {
+    box-shadow: 0 0 16px var(--glow-color) !important;
+    outline: 2px solid var(--border-color) !important;
+    font-weight: 700 !important;
+}
+
+/* Individual Gradient Rules */
+div[data-testid="element-container"]:has(.action-marker.btn-grad-blue) + div[data-testid="element-container"] button {
+    background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 50%, #00b4d8 100%) !important;
+}
+.action-marker.btn-grad-blue {
+    --glow-color: rgba(59, 130, 246, 0.6);
+    --border-color: #60a5fa;
+}
+
+div[data-testid="element-container"]:has(.action-marker.btn-grad-pink) + div[data-testid="element-container"] button {
+    background: linear-gradient(135deg, #be185d 0%, #ec4899 50%, #a855f7 100%) !important;
+}
+.action-marker.btn-grad-pink {
+    --glow-color: rgba(236, 72, 153, 0.6);
+    --border-color: #f472b6;
+}
+
+div[data-testid="element-container"]:has(.action-marker.btn-grad-green) + div[data-testid="element-container"] button {
+    background: linear-gradient(135deg, #047857 0%, #10b981 50%, #06b6d4 100%) !important;
+}
+.action-marker.btn-grad-green {
+    --glow-color: rgba(16, 185, 129, 0.6);
+    --border-color: #34d399;
+}
+
+div[data-testid="element-container"]:has(.action-marker.btn-grad-indigo) + div[data-testid="element-container"] button {
+    background: linear-gradient(135deg, #4338ca 0%, #6366f1 50%, #d946ef 100%) !important;
+}
+.action-marker.btn-grad-indigo {
+    --glow-color: rgba(99, 102, 241, 0.6);
+    --border-color: #818cf8;
+}
+
+div[data-testid="element-container"]:has(.action-marker.btn-grad-teal) + div[data-testid="element-container"] button {
+    background: linear-gradient(135deg, #0f766e 0%, #14b8a6 50%, #3b82f6 100%) !important;
+}
+.action-marker.btn-grad-teal {
+    --glow-color: rgba(20, 184, 166, 0.6);
+    --border-color: #2dd4bf;
+}
+
+div[data-testid="element-container"]:has(.action-marker.btn-grad-orange) + div[data-testid="element-container"] button {
+    background: linear-gradient(135deg, #c2410c 0%, #f97316 50%, #eab308 100%) !important;
+}
+.action-marker.btn-grad-orange {
+    --glow-color: rgba(249, 115, 22, 0.6);
+    --border-color: #fb923c;
+}
+
+div[data-testid="element-container"]:has(.action-marker.btn-grad-purple) + div[data-testid="element-container"] button {
+    background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 50%, #ec4899 100%) !important;
+}
+.action-marker.btn-grad-purple {
+    --glow-color: rgba(139, 92, 246, 0.6);
+    --border-color: #a78bfa;
+}
+
+div[data-testid="element-container"]:has(.action-marker.btn-grad-red) + div[data-testid="element-container"] button {
+    background: linear-gradient(135deg, #b91c1c 0%, #ef4444 50%, #f97316 100%) !important;
+}
+.action-marker.btn-grad-red {
+    --glow-color: rgba(239, 68, 68, 0.6);
+    --border-color: #f87171;
+}
+
+/* --- OUTPUT CARDS --- */
+.output-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.output-card {
+    background-color: #080c14 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+    padding: 1.5rem !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    margin-bottom: 2rem !important;
+}
+
+.output-code {
+    font-family: 'Fira Code', 'Courier New', Courier, monospace !important;
+    font-size: 0.9rem !important;
+    color: #a5b4fc !important;
+    line-height: 1.6 !important;
+    background-color: #05080e !important;
+    border-radius: 12px !important;
+    padding: 1.25rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.04) !important;
+    overflow-x: auto !important;
+    margin: 0 !important;
+}
+
+/* Image output card layout */
+div[data-testid="element-container"]:has(.output-image-marker) + div[data-testid="element-container"] {
+    background-color: #080c14 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+    padding: 1rem !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    text-align: center !important;
+}
+
+div[data-testid="element-container"]:has(.output-image-marker) + div[data-testid="element-container"] img {
+    border-radius: 12px !important;
+    max-height: 400px !important;
+    object-fit: contain !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* --- OTHER PAGES (DASHBOARD CARDS) --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    background-color: #0e1320;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
+.metric-title {
+    font-size: 0.85rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.metric-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #f8fafc;
+    font-family: 'Outfit', sans-serif;
+}
+
+.metric-trend {
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.trend-up { color: #10b981; }
+.trend-down { color: #ef4444; }
+.trend-neutral { color: #94a3b8; }
+
+.feature-card {
+    background-color: #0e1320;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.feature-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+}
+
+.feature-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #f1f5f9;
+}
+
+.feature-desc {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    line-height: 1.5;
+}
+
+.feature-tag {
+    align-self: flex-start;
+    background-color: rgba(59, 130, 246, 0.1);
+    color: #60a5fa;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+}
+
+/* --- PREMIUM DIALOG/MODAL OVERLAY (STDIALOG) --- */
+div[data-testid="stDialog"], [data-testid="stDialog"] {
+    background-color: rgba(9, 13, 20, 0.8) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+/* Target the dialog role modal card directly to override white styling */
+div[role="dialog"] {
+    background-color: #0e1320 !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    color: #f1f5f9 !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
+    max-width: 480px !important;
+    width: 90% !important;
+    padding: 2rem !important;
+}
+
+/* Style modal text, headers, and tabs */
+div[role="dialog"] h3, div[role="dialog"] h1, div[role="dialog"] h2 {
+    color: #f8fafc !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+div[role="dialog"] p, div[role="dialog"] span, div[role="dialog"] label, div[role="dialog"] caption {
+    color: #94a3b8 !important;
+    font-size: 0.9rem !important;
+}
+
+/* Fix standard dialog buttons styling inside modal */
+div[role="dialog"] [data-testid="baseButton-secondary"] {
+    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 600 !important;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2) !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+div[role="dialog"] [data-testid="baseButton-secondary"]:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #4338ca 100%) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35) !important;
+}
+
+/* Style input fields inside modal */
+div[role="dialog"] input {
+    background-color: #090d14 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #f1f5f9 !important;
+    border-radius: 8px !important;
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.95rem !important;
+    transition: border-color 0.2s ease !important;
+}
+
+div[role="dialog"] input:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Style the native Close Button icon */
+div[role="dialog"] button[aria-label="Close"], div[data-testid="stDialog"] button[aria-label="Close"] {
+    color: #64748b !important;
+    background-color: transparent !important;
+    border: none !important;
+    transition: color 0.2s ease !important;
+}
+
+div[role="dialog"] button[aria-label="Close"]:hover, div[data-testid="stDialog"] button[aria-label="Close"]:hover {
+    color: #f1f5f9 !important;
+}
+
+/* Responsive Modal Adjustments */
+@media (max-width: 768px) {
+    div[role="dialog"] {
+        width: 95% !important;
+        padding: 1.5rem 1.25rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    div[role="dialog"] {
+        padding: 1.25rem 1rem !important;
+        width: 98% !important;
+    }
+    div[role="dialog"] [data-testid="column"] {
+        min-width: 100% !important;
+        flex: 1 1 100% !important;
+    }
+}
