@@ -47,8 +47,11 @@ if "google_login_flow" not in st.session_state:
 # ---------- Sidebar Component ----------
 def render_sidebar():
     # Load stylesheet and inject it
+    import os
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    css_path = os.path.join(current_dir, "style.css")
     try:
-        with open("style.css", "r", encoding="utf-8") as f:
+        with open(css_path, "r", encoding="utf-8") as f:
             css = f.read()
         st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
     except Exception as e:

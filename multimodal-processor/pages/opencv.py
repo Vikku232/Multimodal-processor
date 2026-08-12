@@ -77,8 +77,11 @@ def render_opencv_page():
             st.image(input_image, caption="Uploaded Image Preview", use_column_width=True)
             st.markdown('</div>', unsafe_allow_html=True)
         else:
+            import os
             try:
-                input_image = Image.open("default_camera.png").convert("RGB")
+                current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+                camera_img_path = os.path.join(current_dir, "default_camera.png")
+                input_image = Image.open(camera_img_path).convert("RGB")
                 st.markdown('<div class="preview-card">', unsafe_allow_html=True)
                 st.image(input_image, caption="Default Image Preview (Nikon Camera)", use_column_width=True)
                 st.markdown('</div>', unsafe_allow_html=True)

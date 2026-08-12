@@ -6,15 +6,23 @@ import json
 import requests
 import urllib.parse
 
-# Load Google OAuth client config from `google_client.json` if present.
+# Load Google OAuth client config from `st.secrets` or `google_client.json` if present.
 client_config = None
-_client_file = "google_client.json"
-if os.path.exists(_client_file):
-    try:
-        with open(_client_file, "r", encoding="utf-8") as _f:
-            client_config = json.load(_f)
-    except Exception:
-        client_config = None
+try:
+    if "google_oauth" in st.secrets:
+        client_config = dict(st.secrets["google_oauth"])
+except FileNotFoundError:
+    pass
+
+if not client_config:
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    _client_file = os.path.join(current_dir, "google_client.json")
+    if os.path.exists(_client_file):
+        try:
+            with open(_client_file, "r", encoding="utf-8") as _f:
+                client_config = json.load(_f)
+        except Exception:
+            client_config = None
 
 @st.dialog("🔑 Account Authentication")
 def render_auth_dialog():

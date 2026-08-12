@@ -6,9 +6,12 @@ def render_source_page():
     
     tabs = st.tabs(["🐍 app.py", "💾 db.py", "🔑 auth.py", "🎨 style.css"])
     
+    import os
+    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    
     with tabs[0]:
         try:
-            with open("app.py", "r", encoding="utf-8") as f:
+            with open(os.path.join(root_dir, "app.py"), "r", encoding="utf-8") as f:
                 content = f.read()
             st.code(content, language="python")
         except Exception as e:
@@ -16,7 +19,7 @@ def render_source_page():
             
     with tabs[1]:
         try:
-            with open("db.py", "r", encoding="utf-8") as f:
+            with open(os.path.join(root_dir, "db.py"), "r", encoding="utf-8") as f:
                 content = f.read()
             st.code(content, language="python")
         except Exception as e:
@@ -24,7 +27,7 @@ def render_source_page():
             
     with tabs[2]:
         try:
-            with open("auth.py", "r", encoding="utf-8") as f:
+            with open(os.path.join(root_dir, "auth.py"), "r", encoding="utf-8") as f:
                 content = f.read()
             st.code(content, language="python")
         except Exception as e:
@@ -32,7 +35,7 @@ def render_source_page():
             
     with tabs[3]:
         try:
-            with open("style.css", "r", encoding="utf-8") as f:
+            with open(os.path.join(root_dir, "style.css"), "r", encoding="utf-8") as f:
                 content = f.read()
             st.code(content, language="css")
         except Exception as e:
