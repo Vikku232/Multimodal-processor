@@ -160,12 +160,12 @@ def render_opencv_page():
     # Output Section
     st.markdown('<div class="output-title">Output Result</div>', unsafe_allow_html=True)
     
-    st.write("DEBUG INFO:", {"action": st.session_state.action, "text": user_text})
     selected_action = st.session_state.action
     text_actions = {"entities", "pos", "noun_chunks", "tokenize"}
     image_actions = {"grayscale", "edges", "blur", "invert"}
     
     if selected_action in text_actions:
+        user_text = st.session_state.get("opencv_text_input", "SpaCy is an amazing library for NLP.")
         if not user_text or user_text.strip() == "":
             st.warning("⚠️ Text input is empty! Please write some text inside 'Input Text Mode' to run the operation.")
         else:
