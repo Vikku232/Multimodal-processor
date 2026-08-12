@@ -1,6 +1,7 @@
 streamlit==1.38.0
 opencv-python-headless==4.10.0.84
 spacy==3.7.5
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
 nltk==3.9.1
 numpy==1.26.4
 Pillow==10.4.0

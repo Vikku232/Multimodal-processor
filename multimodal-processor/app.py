@@ -9,15 +9,29 @@ import pages
 
 # Ensure NLTK tokenizer models are downloaded
 import nltk
+import ssl
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
 try:
     nltk.data.find("tokenizers/punkt")
 except LookupError:
-    nltk.download("punkt", quiet=True)
+    try:
+        nltk.download("punkt", quiet=True)
+    except Exception:
+        pass
 
 try:
     nltk.data.find("tokenizers/punkt_tab")
 except LookupError:
-    nltk.download("punkt_tab", quiet=True)
+    try:
+        nltk.download("punkt_tab", quiet=True)
+    except Exception:
+        pass
 
 # Initialize MySQL tables
 db.init_db()
