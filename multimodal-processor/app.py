@@ -1,11 +1,11 @@
 import streamlit as st
+# ---------- Page Config ----------
+st.set_page_config(page_title="Multimodal Processor UI", layout="wide")
+
 import datetime
 import db
 import auth
 import pages
-
-# ---------- Page Config ----------
-st.set_page_config(page_title="Multimodal Processor UI", layout="wide")
 
 # Ensure NLTK tokenizer models are downloaded
 import nltk
