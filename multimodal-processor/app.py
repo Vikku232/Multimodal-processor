@@ -57,6 +57,8 @@ if "show_auth" not in st.session_state:
     st.session_state.show_auth = False
 if "google_login_flow" not in st.session_state:
     st.session_state.google_login_flow = False
+if "uploaded_image" not in st.session_state:
+    st.session_state.uploaded_image = None
 
 # ---------- Sidebar Component ----------
 def render_sidebar():

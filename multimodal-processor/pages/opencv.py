@@ -71,11 +71,27 @@ def render_opencv_page():
         
     # 2. Image Mode tab
     with tabs[1]:
-        uploaded_file = st.file_uploader("Upload an image", type=["png", "jpg", "jpeg"], key="opencv_image_upload", label_visibility="collapsed")
+        def on_image_upload_change():
+            uploaded_file = st.session_state.opencv_image_upload
+            if uploaded_file is not None:
+                try:
+                    st.session_state.uploaded_image = Image.open(uploaded_file).convert("RGB")
+                except Exception as e:
+                    st.session_state.uploaded_image = None
+            else:
+                st.session_state.uploaded_image = None
+
+        st.file_uploader(
+            "Upload an image",
+            type=["png", "jpg", "jpeg"],
+            key="opencv_image_upload",
+            label_visibility="collapsed",
+            on_change=on_image_upload_change
+        )
         
-        # Load sample image by default if nothing uploaded
-        if uploaded_file is not None:
-            input_image = Image.open(uploaded_file).convert("RGB")
+        # Load sample image or uploaded image from session state
+        if st.session_state.get("uploaded_image") is not None:
+            input_image = st.session_state.uploaded_image
             st.markdown('<div class="preview-card">', unsafe_allow_html=True)
             st.image(input_image, caption="Uploaded Image Preview", use_column_width=True)
             st.markdown('</div>', unsafe_allow_html=True)
